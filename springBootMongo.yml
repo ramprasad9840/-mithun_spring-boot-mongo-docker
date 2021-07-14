@@ -3,9 +3,9 @@ kind: ReplicationController
 metadata:
   labels:
     name: springboot
-  name: spring-controller
+ # name: spring-controller
 spec:
-  replicas: 1
+  #replicas: 1
   template:
     metadata:
       labels:
@@ -24,7 +24,7 @@ kind: Service
 metadata:
   labels:
     name: springboot
-  name: springboot
+ # name: springboot
 spec:
   type: NodePort
   ports:
@@ -39,9 +39,9 @@ kind: ReplicationController
 metadata:
   labels:
     name: mongo
-  name: mongo-controller
+ # name: mongo-controller
 spec:
-  replicas: 1
+ # replicas: 1
   template:
     metadata:
       labels:
@@ -68,7 +68,7 @@ kind: Service
 metadata:
   labels:
     name: mongo
-  name: mongo
+  #name: mongo
 spec:
   type: ClusterIP
   ports:
