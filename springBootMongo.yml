@@ -5,18 +5,13 @@ metadata:
     name: springboot
   name: spring-controller
 spec:
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        name: springboot
-    spec:
-      containers:
-      - image: bc0071/spring-boot-mongo
-        name: springboot
-        ports:
-        - name: springboot
-          containerPort: 8080      
+  containers:
+  - image: bc0071/spring-boot-mongo
+    name: springboot
+    ports:
+    - name: springboot
+      containerPort: 8080     
+       
 ---
 # Node Port Service
 apiVersion: v1
@@ -41,26 +36,20 @@ metadata:
     name: mongo
   name: mongo-controller
 spec:
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        name: mongo
-    spec:
-      containers:
-      - image: mongo
-        name: mongo
-        ports:
-        - name: mongo
-          containerPort: 27017
-          hostPort: 27017
-        volumeMounts:
-        - name: mongo-persistent-storage
-          mountPath: /data/db
-      volumes:
-      - name: mongo-persistent-storage
-        hostPath:
-         path: /tmp/dbbackup
+  containers:
+  - image: mongo
+    name: mongo
+    ports:
+    - name: mongo
+      containerPort: 27017
+      hostPort: 27017
+    volumeMounts:
+    - name: mongo-persistent-storage
+      mountPath: /data/db
+  volumes:
+  - name: mongo-persistent-storage
+    hostPath:
+     path: /tmp/dbbackup
 ---
 # Mongo Node Port RC
 apiVersion: v1
